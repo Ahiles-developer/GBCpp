@@ -3,6 +3,7 @@ using namespace std;
 
 // Домашняя работа.
 
+// Выводит массив чисел double
 void printArray(const double* arr, const size_t SIZE) {
     for (size_t i = 0; i < SIZE; i++)
     {
@@ -10,6 +11,7 @@ void printArray(const double* arr, const size_t SIZE) {
     }
 }
 
+// Меняет значение
 void changeTo(int arr[], int SIZE) {
     for (size_t i = 0; i < SIZE; i++) {
         arr[i] == 0 ? arr[i] = 1 : arr[i] = 0;
@@ -17,6 +19,7 @@ void changeTo(int arr[], int SIZE) {
     }
 }
 
+// Заполняет пустой массив
 void fillArray(int arr[], int SIZE) {
     int j = 1;
     for (size_t i = 1; i < SIZE; i++, j = j + 3) {
