@@ -15,16 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lesson7_HW.cpp">
+    <ClCompile Include="Lesson8.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="MyLib.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="MyLib.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

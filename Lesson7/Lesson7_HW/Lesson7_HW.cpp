@@ -1,8 +1,25 @@
 ﻿#include <iostream>
 using namespace std;
-#include "mylib.h"
+#include "MyLib.h"
 #define NUMBER(a, b) (a >= 0 && a < b) ? cout << "true" : cout << "false";
-#define ARRAY_SIZE 3
+#define ARRAY_SIZE 10
+
+
+inline void task3() {
+    int* arr = new (nothrow) int[ARRAY_SIZE];
+
+    if (arr != nullptr) {
+        cout << "Enter " << ARRAY_SIZE << " numbers: " << endl;
+        for (size_t i = 0; i < ARRAY_SIZE; i++) {
+            cin >> arr[i];
+        }
+
+        MyLib::sortArr(arr, ARRAY_SIZE);
+        MyLib::printArray(arr, ARRAY_SIZE);
+
+        delete[] arr;
+    }
+}
 
 int main()
 {
@@ -10,9 +27,10 @@ int main()
     // для инициализации массива (типа float), печати его на экран и подсчета количества отрицательных и положительных элементов. 
     // Вызывайте эти 3-и функции из main для работы с массивом.
 
-    const int size = 4;
-    double arr[size] = { 2.5, 3.2, 5.9, 8.1 };
-    Task_1::printArray(arr, size);
+    const int size = 14;
+    const float* arr = MyLib::initArray(size);
+    MyLib::printArray(arr, size);
+    MyLib::printPositiveAndNegative(arr, size);
     cout << "\n" << endl;
     
     //======================================================================================================================================
@@ -25,5 +43,6 @@ int main()
     cout << "\n" << endl;
 
     //======================================================================================================================================
-}
+
+    
 
