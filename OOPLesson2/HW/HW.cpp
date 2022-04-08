@@ -52,49 +52,27 @@ int Student::counter = 0;
 // У Fruit есть две переменные - члена: name(имя) и color(цвет).
 // Добавить новый класс GrannySmith, который наследует класс Apple.
 class Fruit {
-protected:
     std::string name;
     std::string color;
 public:
-    Fruit() {}
-    Fruit(std::string name) { this->name = name; }
-    Fruit(std::string name, std::string color) {
-        this->name = name;
-        this->color = color;
-    }
-    std::string getName(std::string name) { return name; }
-    std::string getColor(std::string color) { return color; }
+    Fruit(std::string _name, std::string _color) : name(_name), color(_color) {}
+    std::string getName() const { return name; }
+    std::string getColor() const { return color; }
 };
 
 class Apple : public Fruit {
 public:
-    Apple() {}
-    Apple(std::string color) {
-        name = "apple";
-        this->color = color;
-    }
-
-    std::string getName() { return name; }
-    std::string getColor() { return color; }
+    Apple(std::string _color = "red", std::string _name = "Apple") : Fruit(_name, _color) {}
 };
 
 class Banana : public Fruit {
 public:
-    Banana() {
-        name = "banana";
-        color = "yellow";
-    }
-
-    std::string getName() { return name; }
-    std::string getColor() { return color; }
+    Banana(std::string _name = "Banana", std::string _color = "yellow") : Fruit(_name, _color) {}
 };
 
 class GrannySmith : public Apple {
 public:
-    GrannySmith() {
-        name = "Granny Smith apple";
-        color = "green";
-    }
+    GrannySmith() : Apple("green", "") {}
 };
 
 int main()
