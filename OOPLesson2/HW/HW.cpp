@@ -72,7 +72,7 @@ public:
 
 class GrannySmith : public Apple {
 public:
-    GrannySmith() : Apple("green", "") {}
+    GrannySmith() : Apple("green", "GrannySmith") {}
 };
 
 int main()
