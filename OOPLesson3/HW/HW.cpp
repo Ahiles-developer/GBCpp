@@ -1,57 +1,51 @@
 ﻿#include <iostream>
+#include <cassert>
 
 // 1. Создать абстрактный класс Figure(фигура). Его наследниками являются классы Parallelogram(параллелограмм) и Circle(круг).
 // Класс Parallelogram — базовый для классов Rectangle(прямоугольник), Square(квадрат), Rhombus(ромб).
 // Для всех классов создать конструкторы.Для класса Figure добавить чисто виртуальную функцию area() (площадь).
 // Во всех остальных классах переопределить эту функцию, исходя из геометрических формул нахождения площади.
 class Figure {
+protected:
+    double width;
+    double height;
 public:
-    Figure() {};
-    virtual void area() const = 0; // чисто виртуальная функция
+    Figure(double _width, double _height) : width(_width), height(_height) {};
+    virtual double area() = 0; // чисто виртуальная функция
 };
 
 class Parallelogram : public Figure {
-    std::uint8_t a;  // основание 
-    std::uint8_t h;  // высота
 public:
-    Parallelogram() {};
-    Parallelogram(std::uint8_t _a, std::uint8_t _h) : a(_a), h(_h) {};
-    void area() const override {
-        std::uint8_t s = a * h;
-        printf("Площадь параллелограмма равна: %d\n", s);
-    }
+    Parallelogram(double width, double height) : Figure(width, height) {};
+    double area() override { return width * height; }
 };
 
 // Круг
-class Circle : public Figure{};
+class Circle : public Figure{
+public:
+    Circle(double radius) : Figure(radius, radius) { }
+    double area() override { return 3.1415926 * width * height; }
+};
 
 // Прямоугольник
 class Rectangle : public Parallelogram {
-    std::uint8_t a; // длина
-    std::uint8_t b; // ширина
 public:
-    Rectangle(std::uint8_t _a, std::uint8_t _b) : a(_a), b(_b) { };
-
-    void area() const override {
-        std::uint8_t s = a * b;
-        printf("Площадь прямоугольника равна: %d\n", s);
-    };
+    Rectangle(double width, double height) : Parallelogram(width, height) {};
+    double area() override { return width * height; };
 };
 
 // Квадрат
 class Square : public Parallelogram {
-    std::uint8_t a;
 public:
-    Square(std::uint8_t _a) : a(_a) {};
-
-    void area() const override {
-        std::uint8_t s = a * a;
-        printf("Площадь квадрата равна: %d\n", s);
-    };
+    Square(double width, double height) : Parallelogram(width, height) {};
 };
 
 // Ромб
-class Rhombus : Parallelogram { };
+class Rhombus : public Parallelogram {
+public:
+    Rhombus(double width, double height) : Parallelogram(width, height) {}
+    double area() override { return 0.5 * width * height; }
+};
 
 //2. Создать класс Car(автомобиль) с полями company(компания) и model(модель). 
 //Классы - наследники: PassengerCar(легковой автомобиль) и Bus(автобус).От этих классов наследует класс Minivan(минивэн).
@@ -61,9 +55,8 @@ class Car {
     std::string company;
     std::string model;
 public:
-    Car() {}
-    Car(std::string _company, std::string _model) : company(_company), model(_model) {}
-
+    Car(std::string company, std::string model) : company(std::move(company)), model(std::move(model)) {}
+    virtual ~Car() {}
     void info() {
         std::cout << "Компания: " << company << ". Модель: " << model << std::endl;
     };
@@ -72,26 +65,25 @@ public:
 // Легковой автомобиль
 class PassengerCar : virtual public Car {
 public:
-    PassengerCar() {}
-    PassengerCar(std::string company, std::string model) : Car(company, model) {}
+    PassengerCar(const std::string &company, const std::string &model) : Car(company, model) {}
 };
 
 // Автобус
 class Bus : virtual public Car {
 public:
-    Bus() {}
-    Bus(std::string company, std::string model) : Car(company, model) {}
+    Bus(const std::string company, const std::string model) : Car(company, model) {}
 };
 
-class Minivan : public PassengerCar, public Bus {
+class Minivan : public Bus, public PassengerCar {
 public:
-    Minivan(std::string _company, std::string _model) : PassengerCar(_company, _model) {}
+    Minivan(const std::string &company, const std::string &model) : 
+        Car(company, model), Bus(company, model), PassengerCar(company, model) {}
 };
 
 //3. Создать класс : Fraction(дробь).Дробь имеет числитель и знаменатель(например, 3 / 7 или 9 / 2).
 //Предусмотреть, чтобы знаменатель не был равен 0. Перегрузить :
 class Fraction {
-
+ 
 };
 
 int main()
@@ -102,7 +94,7 @@ int main()
     p.area();
     Rectangle r(2, 10);
     r.area();
-    Square s(10);
+    Square s(10, 12);
     s.area();
 
     Car c1("Car", "Model");
