@@ -13,13 +13,21 @@ int a = 100;
 
 std::size_t Var = 0; // 0 .. 64bit
 
+using CarSpeed = double; // позволяет создавать псеводонимы для типов(using новый_тип = старый_тип)
+
+typedef long long PlaneSpeed; // typedef старый_тип новый_тип
+
 int main()
 {
+    CarSpeed car1{ 300.0 };
+
+    PlaneSpeed plane{ 800 };
+
     // Здесь создаются локальные переменные
 
     char const a = 'S';  // Константы изменять нельзя
    
-    cout << a << " - " << ::a; // делаем вот так, если локальная переменная заслоняет глобальную
+    cout << a << " - " << ::a; // делаем вот так(два двоеточия), если локальная переменная заслоняет глобальную
 
     double d1{ 77.88 };
 
@@ -34,7 +42,17 @@ int main()
 
     bool arr3[10] = { true, true, false, false, true };
 
-    char str1[] = "Some very cool string in C++"; // 0
+    char str[]{ "Some very cool string in C++" }; // 0
+
+    str[0] = 'X';
+    str[4] = '+';
+
+    const int size = 5;
+    int arg[size][size];
+
+    cout << arg[0][0] << " " << arg[2][1];
+
+    //cout << str << endl;
 
     /*
     bool flag = true;
