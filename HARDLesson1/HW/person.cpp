@@ -6,16 +6,23 @@
 struct Person {
 	std::string name, surname;;
 	std::optional<std::string> patronymic;
-
 };
 
 std::ostream& operator<< (std::ostream& out, const Person& p) {
-	return out << p.surname << " " << p.name << " " << p.patronymic << "\n";
+	out << p.surname << " " << p.name;
+	if (p.patronymic.has_value()) {
+		out << p.patronymic.value();
+	} else {
+		out << "";
+	}
+	return out;
 }
 
-std::string operator<(const Person& p1, const Person& p2) {
-	return std::tie(p1.name, p1.surname) < (p2.name, p2.surname);
+bool operator<(const Person& p1, const Person& p2) {
+	return std::tie(p1.name, p1.surname, p1.patronymic) < std::tie(p2.name, p2.surname, p2.patronymic);
 }
 
-Person operator==(const Person& p) {}
+bool operator==(const Person& p1, const Person& p2) {
+	return std::tie(p1.name, p1.surname, p1.patronymic) == std::tie(p2.name, p2.surname, p2.patronymic);
+}
 
