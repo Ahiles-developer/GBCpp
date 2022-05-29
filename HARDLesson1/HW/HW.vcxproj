@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-
-    <RootNamespace>HARDLesson2</RootNamespace>
+    <ProjectGuid>{4f611b7b-e256-461f-9b8d-32d7599026a9}</ProjectGuid>
+    <RootNamespace>HW</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +140,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="HARDLesson2.cpp" />
+    <ClCompile Include="HW.cpp" />
+    <ClCompile Include="person.cpp" />
+    <ClCompile Include="phonebook.cpp" />
+    <ClCompile Include="phonenumber.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="person.h" />
+    <ClInclude Include="phonebook.h" />
+    <ClInclude Include="phonenumber.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
