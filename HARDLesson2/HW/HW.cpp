@@ -12,8 +12,10 @@ void mySwap(T& a, T& b) {
 }
 
 template<typename T>
-void sortPointers(vector<int*> &v) {
-
+void sortPointers(vector<T*> &v) {
+    std::sort(v.begin(), v.end(), [](T* left, T* right) {
+        return *left < *right;
+        });
 }
 
 int main()
